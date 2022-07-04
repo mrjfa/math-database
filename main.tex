@@ -1,0 +1,105 @@
+\documentclass[12pt]{scrartcl}
+\usepackage[answers]{probsoln}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\newtheorem{problem}{Problem}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\newenvironment{myenum}{
+\begin{enumerate}[leftmargin=*]
+  \setlength{\itemsep}{0.5em}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}
+}{\end{enumerate}}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{pifont}
+\usepackage[verbose]{wrapfig}
+\usepackage{subfig}
+\usepackage{float}
+\usepackage{xparse}
+\usepackage{environ}
+\usepackage{etoolbox}
+\PSNrandseed{4} % This randomizes problems every time
+\begin{document}
+%\toggletrue{doPrintSolution}
+%\toggletrue{doPrintMC}
+\author{José F. Apolinar}
+\title{Preparing exam and homework material with \texttt{probsoln}}
+\maketitle
+
+\section*{Purpose}
+The following are some thought in using this packages:
+\begin{itemize}
+  \item When defining problems you don't necessarily need to provide a solution
+  \item Solution can be an image of written solution
+  \item IMPORTANT? Provide three close answers (or two and one dummy answer) but not necessarily work for them. This will help build shuffle database or any MC assessment.
+  \item If taken from a book, article, online, etc. provide citation! This is were superbib comes into play. For example \begin{verbatim}\cite[p.~150]{reference}\end{verbatim}
+  \item This list will have the \textbf{absolute} number associated with the problem. Worksheet and assessments will have the \textbf{relative} number i.e. relative to the worksheet, etc.
+\end{itemize}
+
+
+% \doforrandN{1}{\thisfile}{dbase,dbase1,dbasejaja}{%
+% \loadrandomproblems{1}{\thisfile}}
+% \loadrandomproblems[John]{2}{dbase} % We are calling dbase -> John
+%\loadselectedproblems[haha]{2}{dbasejaja} % This loads one problem from the database
+
+% \centerline{\textbf{Homework for John}}
+% {\hideanswers
+% \begin{myenum}
+% \foreachproblem{\item\thisproblem}
+% \end{myenum}
+% }
+
+% \centerline{\textbf{Homework for John}}
+% {\hideanswers
+% \begin{myenum}
+% \foreachproblem[John]{\item\thisproblem}
+% \end{myenum}
+% }
+
+% The following selects Problem 1 from dbase named haha:
+% {\hideanswers
+% \begin{myenum}
+% \foreachproblem[haha]{\item\thisproblem}
+% \end{myenum}
+% }
+
+% %\foreachproblem[haha]{\thisproblem}
+% \centerline{\textbf{Solutions for John}}
+% {\showanswers
+% \begin{myenum}
+% \foreachproblem[John]{\color{red}\item\thisproblem}
+% \end{myenum}
+% }
+
+\section{Probability}
+\loadallproblems[test1]{dbase1}
+
+{\hideanswers
+\begin{myenum}
+  \foreachproblem[test1]{\item\thisproblem}
+\end{myenum}
+}
+
+\section{Calculus}
+\loadallproblems[test2]{dbase2}
+{\hideanswers
+\begin{myenum}
+\foreachproblem[test2]{\item\label{prob:\thisproblemlabel}\thisproblem}
+\end{myenum}
+}
+\section{Solutions for the nice lists of problems}
+\showanswers
+\textbf{Probability}
+\begin{myenum}
+\foreachproblem[test1]{\item[\ref{prob:\thisproblemlabel}]\thisproblem}
+\end{myenum}
+
+\textbf{Calculus}
+\begin{myenum}
+\foreachproblem[test2]{\item[\ref{prob:\thisproblemlabel}]\thisproblem}
+\end{myenum}
+%
+
+\end{document} 
